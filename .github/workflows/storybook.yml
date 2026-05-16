@@ -1,0 +1,48 @@
+name: storybook
+
+# Builds Storybook (the visual contract for every component in the
+# design system) and publishes to GitHub Pages on every push to main.
+# Designers in Figma reference this URL in component documentation
+# so the React API and the Figma component stay 1:1.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tokens/**"
+      - ".storybook/**"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: latest }
+      - run: bun install --frozen-lockfile
+      - run: bun run build-storybook
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

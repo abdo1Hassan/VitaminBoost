@@ -1,0 +1,490 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "./styles.generated.css";
+@import "./styles.generated.dark.css";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-pop: var(--pop);
+  --color-pop-foreground: var(--pop-foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-quiet: var(--quiet);
+  --color-quiet-foreground: var(--quiet-foreground);
+  --color-commercial: var(--commercial);
+  --color-commercial-foreground: var(--commercial-foreground);
+  --color-ext-purple: var(--ext-purple);
+  --color-ext-cyan: var(--ext-cyan);
+  --color-ext-pink: var(--ext-pink);
+  --color-ext-yellow: var(--ext-yellow);
+  --color-ai: var(--ai);
+  --color-ai-foreground: var(--ai-foreground);
+  --font-display: "Decathlon Display", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Decathlon Text", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ─────────────────────────── Decathlon brand fonts ─────────────────────────── */
+/* Display = posters, hero, headings · Text = body, UI labels */
+@font-face {
+  font-family: "Decathlon Display";
+  src: url("/fonts/Decathlon-Display-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Display";
+  src: url("/fonts/Decathlon-Display-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Display";
+  src: url("/fonts/Decathlon-Display-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Text";
+  src: url("/fonts/Decathlon-Text-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Text";
+  src: url("/fonts/Decathlon-Text-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Text";
+  src: url("/fonts/Decathlon-Text-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Decathlon Text";
+  src: url("/fonts/Decathlon-Text-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Vitamin Play — Decathlon-aligned tokens */
+    --radius: 0.75rem;
+
+    /* Neutrals — backbone (60-70%) */
+    --background: oklch(0.985 0.003 250);
+    --foreground: oklch(0.16 0.02 255);
+
+    --surface: oklch(1 0 0);
+    --surface-foreground: oklch(0.16 0.02 255);
+
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.16 0.02 255);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.16 0.02 255);
+
+    --secondary: oklch(0.96 0.005 250);
+    --secondary-foreground: oklch(0.2 0.02 255);
+
+    --muted: oklch(0.955 0.005 250);
+    --muted-foreground: oklch(0.48 0.02 255);
+
+    /* Quiet — large container areas (Vitamin "quiet" range) */
+    --quiet: oklch(0.97 0.008 250);
+    --quiet-foreground: oklch(0.2 0.02 255);
+
+    /* Brand — Decathlon Blue #3643BA — primary actions ONLY */
+    --primary: oklch(0.42 0.18 268);
+    --primary-foreground: oklch(0.98 0.005 250);
+
+    /* Accent — green for features, sustainability, technologies (NOT buttons) */
+    --accent: oklch(0.62 0.16 152);
+    --accent-foreground: oklch(0.98 0.005 250);
+
+    /* Commercial — promo / discount red-orange */
+    --commercial: oklch(0.6 0.22 28);
+    --commercial-foreground: oklch(0.98 0.005 250);
+
+    /* Pop / extended pink — delight micro-moments only */
+    --pop: oklch(0.65 0.22 350);
+    --pop-foreground: oklch(0.98 0.005 250);
+
+    /* AI — distinct violet for AI-generated content & copilots */
+    --ai: oklch(0.55 0.2 295);
+    --ai-foreground: oklch(0.98 0.005 250);
+
+    /* Status */
+    --destructive: oklch(0.58 0.22 25);
+    --destructive-foreground: oklch(0.98 0.005 250);
+    --success: oklch(0.62 0.15 152);
+    --success-foreground: oklch(0.98 0.005 250);
+    --warning: oklch(0.78 0.16 78);
+    --warning-foreground: oklch(0.22 0.06 70);
+    --info: oklch(0.6 0.13 235);
+    --info-foreground: oklch(0.98 0.005 250);
+
+    /* Extended — categorization (use base for icons-on-white, quiet for containers) */
+    --ext-purple: oklch(0.55 0.18 295);
+    --ext-cyan: oklch(0.65 0.13 215);
+    --ext-pink: oklch(0.7 0.18 345);
+    --ext-yellow: oklch(0.82 0.16 85);
+
+    --border: oklch(0.91 0.005 250);
+    --input: oklch(0.91 0.005 250);
+    --ring: oklch(0.42 0.18 268);
+
+    --chart-1: oklch(0.42 0.18 268); /* brand blue — lead */
+    --chart-2: oklch(0.6 0.16 268);
+    --chart-3: oklch(0.72 0.12 268);
+    --chart-4: oklch(0.62 0.16 152); /* accent green */
+    --chart-5: oklch(0.55 0.2 295);  /* AI violet */
+
+    /* Gradients — light hero is a near-white canvas with playful tinted
+       blobs (brand blue, AI violet, pop pink, accent green) so dark text
+       remains readable. Dark mode uses a true dark gradient (below). */
+    --gradient-hero:
+      radial-gradient(at 12% 8%,  oklch(0.55 0.2  268 / 0.28) 0px, transparent 42%),
+      radial-gradient(at 88% 12%, oklch(0.65 0.22 350 / 0.24) 0px, transparent 45%),
+      radial-gradient(at 78% 88%, oklch(0.55 0.2  295 / 0.26) 0px, transparent 48%),
+      radial-gradient(at 18% 92%, oklch(0.7  0.18 152 / 0.22) 0px, transparent 45%),
+      linear-gradient(135deg, oklch(0.985 0.01 250) 0%, oklch(0.97 0.015 280) 100%);
+    --gradient-ai:
+      radial-gradient(at 20% 20%, oklch(0.55 0.2 295 / 0.25) 0px, transparent 50%),
+      radial-gradient(at 80% 80%, oklch(0.42 0.18 268 / 0.22) 0px, transparent 50%),
+      linear-gradient(135deg, oklch(0.98 0.01 290) 0%, oklch(0.96 0.02 270) 100%);
+    --gradient-pop: linear-gradient(135deg, oklch(0.65 0.22 350) 0%, oklch(0.6 0.22 28) 100%);
+    --gradient-mesh: radial-gradient(at 15% 5%, oklch(0.42 0.18 268 / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 85% 0%, oklch(0.55 0.2 295 / 0.08) 0px, transparent 50%);
+
+    /* Shadows — soft, premium */
+    --shadow-xs: 0 1px 2px oklch(0.2 0.05 250 / 0.06);
+    --shadow-sm: 0 2px 8px oklch(0.2 0.05 250 / 0.06);
+    --shadow-md: 0 8px 24px -8px oklch(0.2 0.05 250 / 0.12);
+    --shadow-lg: 0 20px 48px -12px oklch(0.2 0.05 250 / 0.18);
+    --shadow-glow: 0 0 0 1px oklch(0.42 0.18 268 / 0.12), 0 12px 32px -8px oklch(0.42 0.18 268 / 0.32);
+    --shadow-ai-glow: 0 0 0 1px oklch(0.55 0.2 295 / 0.18), 0 16px 40px -12px oklch(0.55 0.2 295 / 0.4);
+
+    /* Motion */
+    --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Motion durations — quantised. Use only these three. */
+    --motion-fast: 0.18s;   /* taps, segmented control, chip hover */
+    --motion-base: 0.3s;    /* lift, tilt, magnetic, ripple, fade-up */
+    --motion-slow: 0.45s;   /* enters, modals, shake (deliberate) */
+  }
+
+  .dark {
+    --background: oklch(0.16 0.03 255);
+    --foreground: oklch(0.97 0.01 240);
+    --surface: oklch(0.21 0.04 255);
+    --surface-foreground: oklch(0.97 0.01 240);
+    --card: oklch(0.21 0.04 255);
+    --card-foreground: oklch(0.97 0.01 240);
+    --popover: oklch(0.21 0.04 255);
+    --popover-foreground: oklch(0.97 0.01 240);
+    --primary: oklch(0.7 0.18 240);
+    --primary-foreground: oklch(0.12 0.04 255);
+    --secondary: oklch(0.26 0.04 255);
+    --secondary-foreground: oklch(0.97 0.01 240);
+    --muted: oklch(0.26 0.04 255);
+    --muted-foreground: oklch(0.7 0.03 250);
+    --accent: oklch(0.78 0.18 165);
+    --accent-foreground: oklch(0.16 0.03 255);
+    --pop: oklch(0.72 0.22 5);
+    --pop-foreground: oklch(0.98 0.005 250);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 14%);
+    --ring: oklch(0.7 0.18 240);
+
+    /* Dark mode — status tokens */
+    --destructive: oklch(0.68 0.2 25);
+    --destructive-foreground: oklch(0.12 0.04 255);
+    --success: oklch(0.72 0.15 152);
+    --success-foreground: oklch(0.12 0.04 255);
+    --warning: oklch(0.82 0.14 78);
+    --warning-foreground: oklch(0.16 0.06 70);
+    --info: oklch(0.7 0.12 235);
+    --info-foreground: oklch(0.12 0.04 255);
+
+    /* Dark mode — extended & semantic */
+    --quiet: oklch(0.22 0.04 255);
+    --quiet-foreground: oklch(0.95 0.01 240);
+    --commercial: oklch(0.68 0.2 28);
+    --commercial-foreground: oklch(0.12 0.04 255);
+    --ai: oklch(0.68 0.18 295);
+    --ai-foreground: oklch(0.12 0.04 255);
+    --ext-purple: oklch(0.68 0.16 295);
+    --ext-cyan: oklch(0.72 0.12 215);
+    --ext-pink: oklch(0.76 0.16 345);
+    --ext-yellow: oklch(0.85 0.14 85);
+
+    /* Dark mode — gradients */
+    --gradient-hero: linear-gradient(135deg, oklch(0.35 0.16 268) 0%, oklch(0.42 0.18 285) 60%, oklch(0.5 0.18 305) 100%);
+    --gradient-ai: linear-gradient(135deg, oklch(0.5 0.18 295) 0%, oklch(0.4 0.18 268) 100%);
+    --gradient-pop: linear-gradient(135deg, oklch(0.6 0.2 350) 0%, oklch(0.55 0.2 28) 100%);
+    --gradient-mesh: radial-gradient(at 15% 5%, oklch(0.35 0.16 268 / 0.12) 0px, transparent 50%),
+                     radial-gradient(at 85% 0%, oklch(0.5 0.18 295 / 0.12) 0px, transparent 50%);
+
+    /* Dark mode — shadows */
+    --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.2);
+    --shadow-sm: 0 2px 8px oklch(0 0 0 / 0.25);
+    --shadow-md: 0 8px 24px -8px oklch(0 0 0 / 0.4);
+    --shadow-lg: 0 20px 48px -12px oklch(0 0 0 / 0.5);
+    --shadow-glow: 0 0 0 1px oklch(0.7 0.18 240 / 0.2), 0 12px 32px -8px oklch(0.7 0.18 240 / 0.3);
+    --shadow-ai-glow: 0 0 0 1px oklch(0.68 0.18 295 / 0.25), 0 16px 40px -12px oklch(0.68 0.18 295 / 0.35);
+
+    --chart-1: oklch(0.7 0.18 240);
+    --chart-2: oklch(0.6 0.14 240);
+    --chart-3: oklch(0.78 0.1 240);
+    --chart-4: oklch(0.78 0.18 165);
+    --chart-5: oklch(0.68 0.18 295);
+  }
+
+  * { border-color: var(--color-border); }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-ai { background-image: var(--gradient-ai); }
+  .bg-gradient-pop { background-image: var(--gradient-pop); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-ai-glow { box-shadow: var(--shadow-ai-glow); }
+  .shadow-soft { box-shadow: var(--shadow-md); }
+  .shadow-pop { box-shadow: var(--shadow-lg); }
+
+  /* On-gradient text & borders — automatically adapt:
+     · light mode → dark ink on the light canvas hero
+     · dark  mode → near-white on the dark hero
+     Use these on bg-gradient-hero / bg-gradient-ai / bg-gradient-pop. */
+  .text-on-gradient        { color: oklch(0.18 0.04 268); }
+  .text-on-gradient-muted  { color: oklch(0.18 0.04 268 / 0.72); }
+  .text-on-gradient-soft   { color: oklch(0.18 0.04 268 / 0.55); }
+  .border-on-gradient      { border-color: oklch(0.18 0.04 268 / 0.14); }
+  .bg-on-gradient-soft     { background-color: oklch(1 0 0 / 0.55); backdrop-filter: blur(8px); }
+  .bg-on-gradient-strong   { background-color: oklch(1 0 0 / 0.75); backdrop-filter: blur(8px); }
+
+  :is(.dark *) .text-on-gradient        { color: oklch(0.98 0.005 250); }
+  :is(.dark *) .text-on-gradient-muted  { color: oklch(0.98 0.005 250 / 0.78); }
+  :is(.dark *) .text-on-gradient-soft   { color: oklch(0.98 0.005 250 / 0.6); }
+  :is(.dark *) .border-on-gradient      { border-color: oklch(0.98 0.005 250 / 0.22); }
+  :is(.dark *) .bg-on-gradient-soft     { background-color: oklch(0.98 0.005 250 / 0.10); backdrop-filter: none; }
+  :is(.dark *) .bg-on-gradient-strong   { background-color: oklch(0.98 0.005 250 / 0.16); backdrop-filter: none; }
+
+  .grid-dots {
+    background-image: radial-gradient(oklch(0.42 0.18 268 / 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  @keyframes ai-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-ai-shimmer {
+    background: linear-gradient(90deg,
+      oklch(0.55 0.2 295), oklch(0.42 0.18 268), oklch(0.6 0.2 305), oklch(0.55 0.2 295));
+    background-size: 300% 100%;
+    animation: ai-shimmer 4s linear infinite;
+  }
+
+  @keyframes caret-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  .animate-caret { animation: caret-blink 1s step-end infinite; }
+
+
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float { animation: float-y 4s var(--ease-out-soft) infinite; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes pop-in {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .animate-pop-in { animation: pop-in 0.4s var(--ease-spring); }
+
+  /* Orbit — slow rotation for ambient agent constellations */
+  @keyframes orbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-orbit-slow   { animation: orbit 32s linear infinite; }
+  .animate-orbit-medium { animation: orbit 22s linear infinite; }
+  .animate-orbit-reverse{ animation: orbit 28s linear infinite reverse; }
+
+  /* Counter-rotate so children stay upright on a rotating parent */
+  .animate-counter-orbit-slow   { animation: orbit 32s linear infinite reverse; }
+  .animate-counter-orbit-medium { animation: orbit 22s linear infinite reverse; }
+  .animate-counter-orbit-reverse{ animation: orbit 28s linear infinite; }
+
+  /* Soft pulse — breathing center node */
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.04); opacity: 0.92; }
+  }
+  .animate-pulse-soft { animation: pulse-soft 3.6s var(--ease-out-soft) infinite; }
+
+  /* Drift — subtle parallax for ambient blobs */
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(20px, -16px, 0); }
+  }
+  .animate-drift { animation: drift 12s var(--ease-out-soft) infinite; }
+
+  /* Type-stream cursor for live ticker */
+  @keyframes type-stream {
+    0%, 100% { opacity: 0.2; }
+    50%      { opacity: 1; }
+  }
+  .animate-type-stream { animation: type-stream 1.4s var(--ease-out-soft) infinite; }
+
+  /* Shake — gentle error feedback */
+  @keyframes shake-x {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+  .animate-shake-x { animation: shake-x var(--motion-slow) var(--ease-out-soft); }
+
+  /* Tilt 3D — perspective card */
+  .tilt-3d { transform-style: preserve-3d; perspective: 800px; transition: transform var(--motion-base) var(--ease-spring); }
+  .tilt-3d:hover { transform: rotateX(8deg) rotateY(-8deg) translateZ(8px); }
+
+  /* Magnetic — subtle scale + glow pull on hover */
+  .magnetic { transition: transform var(--motion-base) var(--ease-spring), box-shadow var(--motion-base) var(--ease-out-soft); }
+  .magnetic:hover { transform: translateY(-2px) scale(1.04); box-shadow: var(--shadow-glow); }
+
+  /* Ripple — click feedback (apply to a relative parent, ripple span inside) */
+  @keyframes ripple {
+    from { transform: scale(0); opacity: 0.55; }
+    to   { transform: scale(4); opacity: 0; }
+  }
+  .ripple { position: absolute; border-radius: 9999px; background: currentColor; pointer-events: none; animation: ripple var(--motion-slow) var(--ease-out-soft); }
+
+  /* Stagger reveal — children fade up sequentially */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .stagger-children > * { opacity: 0; animation: fade-up var(--motion-base) var(--ease-spring) forwards; }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.12s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.19s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.26s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.33s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.40s; }
+
+  .transition-spring { transition: all var(--motion-base) var(--ease-spring); }
+  .transition-soft { transition: all var(--motion-fast) var(--ease-out-soft); }
+
+  /* Reduced motion — gate all decorative animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-ai-shimmer,
+    .animate-shimmer,
+    .animate-pop-in,
+    .animate-caret,
+    .animate-orbit-slow,
+    .animate-orbit-medium,
+    .animate-orbit-reverse,
+    .animate-counter-orbit-slow,
+    .animate-counter-orbit-medium,
+    .animate-counter-orbit-reverse,
+    .animate-pulse-soft,
+    .animate-drift,
+    .animate-type-stream,
+    .animate-shake-x,
+    .ripple,
+    .stagger-children > * { animation: none; opacity: 1; }
+
+    .tilt-3d:hover,
+    .magnetic:hover { transform: none; box-shadow: none; }
+
+    .transition-spring,
+    .transition-soft { transition-duration: 0.01ms !important; }
+  }
+
+  /* Skip to content link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 9999;
+    padding: 8px 16px;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+}
